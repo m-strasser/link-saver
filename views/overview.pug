@@ -1,0 +1,6 @@
+extends layout
+
+block content
+        h1 Saved Links
+        each linkEntry in linkEntries
+                a(href=linkEntry.url) Hi!

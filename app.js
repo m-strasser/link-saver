@@ -11,6 +11,8 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var account = require('./routes/account');
+var links = require('./routes/links');
 
 var app = express();
 
@@ -26,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session(
         {
-                secret: 'cG!{+i2pEGeXQ.1*Z4lc[`4SJyhWI[?Z]`]}',
-                resave: false,
-                saveUninitialized: false
+                secret: 'cG!{+i2pEGeXQ.1*Z4lc[`4SJyhWI[?Z]`]}'//,
+                //resave: false,
+                //saveUninitialized: false
         }
 ));
 app.use(passport.initialize());
@@ -43,7 +45,9 @@ passport.deserializeUser(Account.deserializeUser());
 mongoose.connect('mongodb://localhost/passport_local_mongoose');
 
 app.use('/', routes);
+app.use('/account', account);
 app.use('/users', users);
+app.use('/links', links);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

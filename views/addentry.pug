@@ -1,0 +1,14 @@
+extends layout
+
+block content
+        h1 Add new Link
+        p.lead Hi #{user.username}! Here you can add a new link.
+        br
+        form(role='form', action='/links/create', method='post')
+                .form-group
+                        input.form-control(type='text', name='title', placeholder='Link Title')
+                .form-group
+                        input.form-control(type='text', name='url', placeholder='https://www.something.com')
+                button.btn.btn-default(type='submit') Add
+                a(href='/')
+                        button.btn.btn-primary(type='button') Cancel

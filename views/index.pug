@@ -1,0 +1,13 @@
+extends layout
+
+block content
+        if (!user)
+                a(href="/account/login") Login
+                br
+                a(href="/account/register") Register
+        if (user)
+                a(href="/links/") View all your links
+                br
+                a(href="/links/create/") Save a new link
+                p You are currently loggend in as #{user.username}
+                a(href="/account/logout") Logout
