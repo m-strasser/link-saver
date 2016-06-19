@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Link = require('../models/linkentry');
+var IsAuthenticated = require('../utils/isauthenticated');
+
+router.use(IsAuthenticated);
 
 router.get('/', function(req, res) {
         Link.all(
@@ -18,7 +21,7 @@ router.get('/create', function(req, res) {
         res.render('addentry', {user: req.user});
 });
 
-router.post('/create', function(req, res, next) {
+router.post('/create', function(req, res) {
         Link.create(
                 req.user.username,
                 req.body.title,
